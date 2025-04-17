@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>グアム同期旅行・プレミアムプラン</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+    
+    :root {
+      --primary: #FF4E50;
+      --secondary: #00B4DB;
+      --accent1: #FFD700;
+      --accent2: #FC466B;
+      --light: #F8F9FA;
+      --dark: #212529;
+      --success: #57CC99;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .header {
+      background: linear-gradient(to right, var(--accent2), var(--secondary));
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .header::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      bottom: -10px;
+      left: -10px;
+      background: url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.1/svg/airplane.svg') repeat;
+      opacity: 0.05;
+      transform: rotate(-5deg);
+      z-index: 0;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+      background: linear-gradient(to right, white, var(--accent1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -100% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: white;
+    }
+    
+    .date-badge {
+      background-color: var(--accent1);
+      color: var(--dark);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transform: rotate(-2deg);
+    }
+    
+    .concept-box {
+      background-color: rgba(255,255,255,0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      border-left: 5px solid var(--accent2);
+    }
+    
+    .concept-box::after {
+      content: "💡";
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2.5rem;
+      opacity: 0.2;
+    }
+    
+    .section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 60%;
+    }
+    
+    .section-content {
+      padding-left: 1rem;
+    }
+    
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 5px;
+      bottom: 5px;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 4px;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+    
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 3px solid var(--accent1);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .timeline-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+    
+    .timeline-item p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .highlight {
+      background-color: rgba(255, 215, 0, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .card h3::before {
+      content: "💎";
+      margin-right: 10px;
+      font-size: 1.4rem;
+    }
+    
+    .checklist {
+      list-style: none;
+    }
+    
+    .checklist li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 0.8rem;
+    }
+    
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background-color: var(--success);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .action-list {
+      list-style: none;
+    }
+    
+    .action-list li {
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 1rem;
+      counter-increment: action-counter;
+    }
+    
+    .action-list li::before {
+      content: counter(action-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    
+    .weather-info {
+      background: linear-gradient(to right, #00B4DB, #0083B0);
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .weather-info::before {
+      content: "☀️";
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(to right, var(--accent2), var(--primary));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 1rem;
+      box-shadow: 0 5px 15px rgba(252, 70, 107, 0.4);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(252, 70, 107, 0.6);
+    }
+    
+    .rain-alternative {
+      background-color: rgba(0, 180, 219, 0.1);
+      border-left: 3px solid var(--secondary);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 0 10px 10px 0;
+    }
+    
+    .rain-alternative::before {
+      content: "☔ 雨天代替案:";
+      font-weight: 700;
+      color: var(--secondary);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer {
+      background: linear-gradient(to right, var(--dark), #2C3E50);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-radius: 30px 30px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      width: 100px;
+      height: 100px;
+      background-color: var(--accent1);
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+    
+    .inspiration {
+      font-style: italic;
+      padding: 1.5rem;
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    .shake:hover {
+      animation: shake 0.5s;
+    }
+    
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    
+    .emoji-bullet {
+      display: inline-block;
+      width: 25px;
+      text-align: center;
+      margin-right: 5px;
+    }
+    
+    /* レスポンシブデザイン */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .timeline {
+        padding-left: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container header-content">
+      <div class="date-badge">2025年6月13日(金)～15日(日) | 10名</div>
+      <h1>グアム同期旅行<br><span style="font-size: 90%;">《リビルド版》</span></h1>
+      <p class="subtitle">エンジン全開で楽しみつくす48時間</p>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="concept-box pulse">
+      <p>乾季明け直後の6月中旬は気温 27‑31 ℃・スコールあり — <span class="highlight">屋外と屋内どちらも楽しめる二刀流構成</span>にしています。<br>"エンジン全開で楽しみつつ、帰国後も日常で語り継がれる 48 時間" を設計しました。</p>
+    </div>
+    
+    <div class="section" id="concept">
+      <h2 class="section-title" style="--emoji: '🎯';">📌 ポイント解説</h2>
+      <div class="section-content">
+        <div class="card">
+          <h3>🌊 海と空と美味の融合</h3>
+          <p>アサイーボウル、ハーゲンダッツから高台ビュー、スカイダイビング、バナナボートまで全てのご要望を完全網羅。晴れでも雨でも「一生モノ」の体験を実現します。</p>
+        </div>
+        <div class="card">
+          <h3>🚀 アドレナリン全開アクティビティ</h3>
+          <p>「やったことない」に全力投球。絆を深めるチャレンジの数々で48時間を最高密度で満たします。2日目のパーティータイムは特に思い出に残るでしょう。</p>
+        </div>
+        <div class="card">
+          <h3>🌟 思い出の装置化</h3>
+          <p>GoPro、タイムラプス、空撮動画など、体験を「カタチ」にする仕掛けを多数用意。帰国後も続く感動を設計しています。</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="timeline">
+      <h2 class="section-title" style="--emoji: '📅';">日別タイムライン</h2>
+      <div class="weather-info">6月中旬グアム気象情報: 気温27-31℃、午後に短時間スコールの可能性あり</div>
+      <div class="section-content">
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Day 1: 6月13日(金) - 到着＆アドレナリン始動</h3>
+            <p><span class="emoji-bullet">🛬</span> 午前: グアム到着・デュシット・ビーチ・リゾートチェックイン</p>
+            <p><span class="emoji-bullet">🍴</span> 昼食: ホテル近くのアサイーボウル専門カフェ（壁画前でタイムラプス撮影）</p>
+            <p><span class="emoji-bullet">🛒</span> 午後①: ドンキホーテでGoPro購入＆くじ引き（撮影当番決め）</p>
+            <p><span class="emoji-bullet">🪂</span> 午後②: スカイダイビング体験（出発前に全員Tシャツにスタンプ）</p>
+            <p><span class="emoji-bullet">🍦</span> 夕方: ハーゲンダッツ＆タモンビーチ散策</p>
+            <p><span class="emoji-bullet">🍹</span> 夜: ウェルカムディナー＆バーホッピング</p>
+            <div class="rain-alternative">
+              スカイダイブ→UnderWater World水族館／ビーチアクティビティ→ドンキ＋ショッピングモール
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <h3>Day 2: 6月14日(土) - アクティビティ＆パーティー</h3>
+            <p><span class="emoji-bullet">🥐</span> 朝: ホテルでの朝食ブッフェ</p>
+            <p><span class="emoji-bullet">🍌</span> 午前: タモンビーチでバナナボート＆マリンアクティビティ</p>
+            <p><span class="emoji-bullet">🛍️</span> 午後: DFSやマイクロネシアモールでショッピング</p>
+            <p><span class="emoji-bullet">🌄</span> 夕方: 恋人岬など高台からの絶景ビュー鑑賞</p>
+            <p><span class="emoji-bullet">🥂</span> 18:00-20:00: ビーチサイドパーティー（BBQ＆カクテル）</p>
+            <div class="rain-alternative">
+              バナナボート→PIC屋内ウォーターパーク／高台ビュー→SandCastleイリュージョンショー／ビーチパーティー→ホテルラウンジパーティー
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <h3>Day 3: 6月15日(日) - フィナーレ＆帰国</h3>
+            <p><span class="emoji-bullet">🧘</span> 朝: サンライズヨガ（ビーチまたはホテル屋上）</p>
+            <p><span class="emoji-bullet">🏊</span> 午前: 自由行動（ビーチ・プール・スパなど）</p>
+            <p><span class="emoji-bullet">🎬</span> 昼食: フェアウェルランチ＆GoPro即席ムービー上映会</p>
+            <p><span class="emoji-bullet">🧳</span> 午後: チェックアウト・空港へ</p>
+            <p><span class="emoji-bullet">🛫</span> 夕方: グアム出発・帰国の途へ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="hotels">
+      <h2 class="section-title" style="--emoji: '🏨';">2️⃣ 推奨ホテル（代表例）</h2>
+      <div class="section-content">
+        <div class="card">
+          <h3>🌴 デュシット・ビーチ・リゾート・グアム</h3>
+          <p>タモン中心に位置する上質なリゾートホテル。広大なプール、プライベートビーチ、高級スパ、複数のレストランを完備。<br>
+          <strong>特典:</strong> 10名以上の予約で専用ビーチエリア確保＆ウェルカムドリンク</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="budget">
+      <h2 class="section-title" style="--emoji: '💰';">💰 概算追加コスト（USD／人）</h2>
+      <div class="section-content">
+        <div class="card">
+          <h3>🎮 GoPro</h3>
+          <p>HERO11 Black: $40/人（10人割り）<br>
+          追加アクセサリー: $10/人</p>
+        </div>
+        <div class="card">
+          <h3>🏄 アクティビティ</h3>
+          <p>スカイダイビング: $230<br>
+          バナナボート: $35<br>
+          マリンアクティビティセット: $80</p>
+        </div>
+        <div class="card">
+          <h3>🍦 グルメ＆パーティー</h3>
+          <p>アサイーボウル: $12<br>
+          ハーゲンダッツ: $8<br>
+          ビーチサイドパーティー: $65</p>
+        </div>
+        <div class="card">
+          <h3>👕 オリジナルTシャツ＆スタンプ</h3>
+          <p>速乾性Tシャツ: $25<br>
+          オリジナルスタンプセット: $8</p>
+        </div>
+        <div class="card">
+          <h3>💎 総額目安</h3>
+          <p><span class="highlight">約$520/人（約¥75,000）</span><br>
+          <strong>※基本旅費（航空券+ホテル+食事等）別</strong></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="rain">
+      <h2 class="section-title" style="--emoji: '☔';">🌦️ 雨天代替アイデア</h2>
+      <div class="section-content">
+        <div class="card">
+          <h3>☔ 雨プロジェクト</h3>
+          <p>スコールが来た瞬間、ホテル屋上で Rain Dance Photo（透明傘＋バックライト）を敢行。雨＝エンジンの燃料としてポジティブ演出。SNS映えする唯一無二の写真に。</p>
+        </div>
+        <div class="card">
+          <h3>🌊 PIC屋内ウォーターパーク</h3>
+          <p>屋外アクティビティが難しい場合に備え、PICグアムのデイパス（約$70）を予約可能に。屋内プール、ウォータースライド、スパ施設が使い放題。</p>
+        </div>
+        <div class="card">
+          <h3>🎭 SandCastleイリュージョンショー</h3>
+          <p>サンセットクルーズの代わりにイリュージョンショー（約$125）をオプション予約。ラスベガス級のショーが雨でも楽しめます。</p>
+        </div>
+        <div class="card">
+          <h3>🛍️ メガショッピングツアー</h3>
+          <p>ドンキ→DFS→マイクロネシアモール→GPOを巡るショッピングマラソン。各所での記念写真とレシートコレクションで思い出を形に。</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="extras">
+      <h2 class="section-title" style="--emoji: '✨';">🎥 "一生忘れない" 仕掛け</h2>
+      <div class="section-content">
+        <div class="card">
+          <h3>📹 ドンキGoPro くじ</h3>
+          <p>初日ドンキでGoPro1台購入 → 日替わり当番が撮影し、最終夜に即編集上映。生々しい映像と編集直後の盛り上がりが最大の思い出に。</p>
+        </div>
+        <div class="card">
+          <h3>🥣 アサイーボウル早食いタイムラプス</h3>
+          <p>カフェ横の壁画前で撮影、SNSリール化。カラフルな背景とユニークなチャレンジで拡散必至のコンテンツに。</p>
+        </div>
+        <div class="card">
+          <h3>✈️ Skydive × Tシャツ連動</h3>
+          <p>ジャンプ直前に T シャツ袖の" Engine Mode: ON"スタンプを全員押下 → 空撮で映す。極限状態でのスタンプシーンが特別な絆の証に。</p>
+        </div>
+        <div class="card">
+          <h3>📸 専属ドローン空撮</h3>
+          <p>スカイダイビングやビーチパーティーを上空から撮影。全体の動きやロケーションの美しさを記録に残します。</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section" id="checklist">
+      <h2 class="section-title" style="--emoji: '📋';">5️⃣ 準備チェックリスト（抜粋）</h2>
+      <div class="section-content">
+        <ul class="checklist">
+          <li><strong>ESTA不要:</strong> 日本国籍は45日以内ならビザ免除。パスポートだけでOK。</li>
+          <li><strong>海外旅行保険:</strong> スカイダイビング対応オプションをつける。</li>
+          <li><strong>服装:</strong> 通気速乾のTシャツ／水着2枚／薄手レインジャケット。</li>
+          <li><strong>通信:</strong> SIMはDocomo Pacific eSIMが便利（空港自販機）。</li>
+          <li><strong>現金:</strong> クレジット主流だが、屋台用に$50程度を小額紙幣で。</li>
+          <li><strong>天候対策:</strong> 日焼け止め（SPF50以上）、サングラス、折りたたみ傘。</li>
+          <li><strong>必需品:</strong> 常備薬、眼鏡・コンタクトのスペア、モバイルバッテリー。</li>
+          <li><strong>必要書類:</strong> パスポートコピー、保険証書、緊急連絡先リスト。</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section" id="next-actions">
+      <h2 class="section-title" style="--emoji: '🚀';">次の実務アクション</h2>
+      <div class="section-content">
+        <ol class="action-list">
+          <li>デュシット・ビーチ・リゾート・グアムに連部屋予約確定（早割適用）</li>
+          <li>スカイダイビング／バナナボート／ビーチパーティーを90日前までにオンライン予約（10名一括割引交渉）</li>
+          <li>ドローン空撮業者へ連絡＆撮影許可申請（特にスカイダイビング時の空撮）</li>
+          <li>オリジナルTシャツデザイン発注＆"Engine Mode: ON"スタンプ制作</li>
+          <li>旅専用LINE オープンチャットで情報共有＆役割分担（GoPro担当／編集担当など）</li>
+        </ol>
+        <div style="margin-top: 20px; font-style: italic; background-color: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; border-left: 3px solid var(--accent2);">
+          <p style="margin-bottom: 10px;">ご不明点や追加の"わがままリクエスト" はお気軽にお知らせください。</p>
+          <p>エンジン全開で、10人の物語に"最高出力"を注ぎ込みましょう！</p>
+        </div>
+        <a href="#" class="cta-button shake">今すぐ計画をスタート！</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div class="container">
+      <h2>最後に</h2>
+      <div class="inspiration">
+        同期10人で"点火"し、海・空・美味をフルスロットルで味わう三日間。<br>
+        アサイーボウル、スカイダイビング、バナナボート、GoPro、ハーゲンダッツ...<br>
+        帰国後も写真・動画・Tシャツに刻まれた体験が、次の挑戦へ向けたエンジンとして動き続けるはずです。
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
